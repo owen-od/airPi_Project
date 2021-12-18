@@ -1,3 +1,5 @@
 .env
 airquality.txt
 presence_detector.log
+__pycache__
+*.pyc

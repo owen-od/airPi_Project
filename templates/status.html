@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Home Environment Data Summary</title>
+    <link href="https://mattduck.github.io/generic-css/css/generic-dark.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <h1>Home Environment Data Summary</h1>
+
+    <h2>Temperature Readings</h2>
+    <p><strong>Office Temperature:</strong> {{ officeTemp }} °C</p>
+    <p><strong>Bedroom Temperature:</strong> {{ bedroomTemp }} °C</p>
+    <p><strong>Balcony Temperature:</strong> {{ balconyTemp }} °C</p>
+
+    <h2>Humidity Readings</h2>
+    <p><strong>Office Humidity:</strong> {{ officeHumidity }} %</p>
+    <p><strong>Bedroom Humidity:</strong> {{ bedroomHumidity }} %</p>
+    <p><strong>Balcony Humidity:</strong> {{ balconyHumidity }} %</p>
+
+    <h2>Pressure Readings</h2>
+    <p><strong>Office Pressure:</strong> {{ officePressure }} hPa</p>
+    <p><strong>Bedroom Pressure:</strong> {{ bedroomPressure }} hPa</p>
+
+    <h2>C02 Readings</h2>
+    <p><strong>Bedroom C02 Level:</strong> {{ bedroomCO2 }} ppm</p>
+
+    <h2>API Description</h2>
+    <p>For use by developers...</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Resource/Path</th>
+                <th>GET</th>
+                <th>POST</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>/home/office</td>
+                <td>Current office environment data</td>
+                <td>Not Used</td>
+            </tr>
+            <tr>
+                <td>/home/bedroom</td>
+                <td>Current bedroom environment data</td>
+                <td>Not used </td>
+            </tr>
+            <tr>
+                <td>/home/balcony</td>
+                <td>Current balcony environment data</td>
+                <td>Not used </td>
+            </tr>
+            <tr>
+                <td>/home/city</td>
+                <td>Current city environment data</td>
+                <td>Not used </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
