@@ -15,7 +15,7 @@ email: homer@simpson.com
 password: secret
 ```
 
-While this is the main part of the project, in the bonus section below there are: (i) further instructions on how to connect a light to the AirPi that flashes when the user is home and certain environmental limits are passed; (ii) an API that allows access on the local network to sensor data from the bme680 sensor, connected Netatmo air quality monitors and OpenWeatherMap API which may be used for further projects; (iii) a simple bash script that uses the API to check the CO2 level every 30 minutes and emails the user a warning if it climbs above 1000ppm. 
+While this is the main part of the project, in the bonus section below there is: (i) further instructions on how to connect a light to the AirPi that will turn on when the user is home and certain environmental limits are passed; (ii) an API that allows access on the local network to sensor data from the bme680 sensor, connected Netatmo air quality monitors and OpenWeatherMap API which may be used for further projects; (iii) a simple bash script that uses the API to check the CO2 level every 30 minutes and emails the user a warning if it climbs above 1000ppm. 
 
 ## Installation
 At command line, you will need to install the following:
@@ -82,7 +82,7 @@ transmissionInterval = 60
 ## How to use this
 In order to obtain air quality readings from the local environment, the `indoor-air-quality.py` script should first be run for 5 minutes. This allows the sensor to run for a burn in periord. After 5 minutes have elapsed, it will then use a combination of relative humidity and gas resistance to estimate indoor air quality as a percentage. The latest air quality reading will continuously be updated in a text file, allowing the data to be accessed in other scripts. 
 
-The `thingspeak.py` script may then be run. This will get readings for temperature, humidity, pressure, gas resistance and air quality and publish them to ThingSpeak (every 60 seconds by default. 
+The `thingspeak.py` script may then be run. This will get readings for temperature, humidity, pressure, gas resistance and air quality and publish them to ThingSpeak (every 60 seconds by default). 
 
 The data, and graphs of the data, can then be accessed from ThingSpeak in the web application. 
 
@@ -176,12 +176,12 @@ The example script uses mailgun to send an email via SMTP. A mailgun account wil
 
 Once you have your mailgun credentials, enter your username and password at lines 13 and 14 of the script. Then enter the email that you wish the alerts to be sent to at line 15. 
 
-The script may then be set as a cronjob to run at regular intervals. For the script to run every 30 minutes type `sudo crontab -e` and, **adjusting the paths to match your directories**, add the below to it:
+The script may then be set as a cronjob to run at regular intervals. For the script to run every 30 minutes type `sudo crontab -e` and, **adjusting the path to match your directories**, add the below to it:
 ```
 */30 * * * * /home/pi/airPi/co2_alert.sh
 ```
 
-The script will now run every 30 minutes and make a HTTP request to the API to check the co2 level. If the co2 level is above 1000ppm an email will be sent to alert the user so they can open the windows. 
+The script will now run every 30 minutes and make a HTTP request to the API to check the CO2 level. If the CO2 level is above 1000ppm an email will be sent to alert the user so they can open the windows. 
 
 Note that this script requires the API to be running, so you my also wish to set the API to run at boot. 
 
