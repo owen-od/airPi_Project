@@ -30,7 +30,7 @@ print ("Devices found: ", devices_found)
 # Script will run if devices are on network indicating user at home. 
 # LED light will turn on if temperature falls below a certain threshold, 
 # and the devices are detected on the network, alerting the user to take action.
-# If devices no longer on network, light will turn off. 
+# If devices no longer on network, light will temporarily turn off. 
 if devices_found:
     print("Owen's devices on network - running lights script:")
     try:

@@ -4,7 +4,7 @@
 CO2=$(curl -s http://192.168.0.173:5000/home/bedroom | jq -r '.CO2')
 echo $CO2
 
-# check if the co2 level is above 1000ppm, and email the user a warning if so
+# check if the CO2 level is above 1000ppm, and email the user a warning if so
 if [ "$CO2" -gt 1000 ]
 then
 # CO2 is above limit - send alert to user

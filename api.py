@@ -46,18 +46,18 @@ def index():
     # get latest data from Netatmo devices
     ws.get_data()
     data = ws.devices
-    # get temperature data and assign to variables
+    # get temperature data from Netatmo devices and BME680 sensor and assign to variables
     bedroomTemp = data[0]['dashboard_data']['Temperature']
     balconyTemp = data[0]["modules"][0]['dashboard_data']['Temperature']
     officeTemp = round(sensor.data.temperature, 2)
-    # get humidity data and assign to variables
+    # get humidity data from Netatmo devices and BME680 sensor and assign to variables
     bedroomHumidity = data[0]['dashboard_data']['Humidity']
     balconyHumidity = data[0]["modules"][0]['dashboard_data']['Humidity']
     officeHumidity = round(sensor.data.humidity, 2)
-    # get pressure data and assign to variables
+    # get pressure data from Netatmo devices and BME680 sensor and assign to variables
     bedroomPressure = data[0]['dashboard_data']['Pressure']
     officePressure = round(sensor.data.pressure, 2)
-    # get CO2 data and assign to variable
+    # get CO2 data from Netatmo device and assign to variable
     bedroomCO2 = data[0]['dashboard_data']['CO2']
     # render status.html page to display data
     return render_template('status.html', officeTemp=officeTemp, bedroomTemp=bedroomTemp, balconyTemp=balconyTemp,

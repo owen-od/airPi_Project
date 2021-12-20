@@ -84,7 +84,7 @@ try:
             if sensor.data.heat_stable:
                 #get gas resistance reading
                 gas_resistance = round(sensor.data.gas_resistance,2)
-                #get air quality reading from file
+                #get air quality reading from text file - will take last reading if more than one in file
                 with open('airquality.txt') as f:
                     for line in f:
                         pass
@@ -95,7 +95,7 @@ try:
                 mqttc.publish(topic, payload)
 
             else:
-                #publish data to thingpeak
+                #publish data to thingpeak without gas resistance and air quality if sensor heat is not stable
                 mqttc.publish(topic, payload)
         #pause for amount of time specified in .env file
         time.sleep(int(config["transmissionInterval"]))
