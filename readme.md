@@ -15,7 +15,7 @@ email: homer@simpson.com
 password: secret
 ```
 
-While this is the main part of the project, in the bonus section below there are: (i) further instructions on how to connect a light to the AirPi that flashes when the user is home and certain environmental limits are passed; (ii) an api that allows access on the local network to sensor data from the bme680 sensor, connected netatmo air quality monitors and openweathermap API which may be used for further projects. 
+While this is the main part of the project, in the bonus section below there are: (i) further instructions on how to connect a light to the AirPi that flashes when the user is home and certain environmental limits are passed; (ii) an API that allows access on the local network to sensor data from the bme680 sensor, connected Netatmo air quality monitors and OpenWeatherMap API which may be used for further projects; (iii) a simple bash script that uses the API to check the CO2 level every 30 minutes and emails the user a warning if it climbs above 1000ppm. 
 
 ## Installation
 At command line, you will need to install the following:
@@ -92,7 +92,7 @@ Note that the above scripts may also be set as a cron job to allow the scripts t
 @reboot sleep 300 && python3 /home/pi/airPi/thingspeak.py mqtt://mqtt3.thingspeak.com:8883
 ```
 
-Note that if a light has also been connected to your airPi (see bonus section below), then the `lights.py` script can also be added to run at boot:
+Note that if a light has also been connected to your AirPi (see bonus section below), then the `lights.py` script can also be added to run at boot:
 ```
 @reboot python3 /home/pi/airPi/lights.py
 ```
@@ -122,7 +122,7 @@ python3 lights.py
 
 Note that this will only run when the devices entered in the ``presence_detector.py`` script are detected on the network. 
 
-**(ii) This section describes how to create a simple web api with Flask that may be used to access data from the AirPi and connected netatmo air quality monitors on the local network**
+**(ii) This section describes how to create a simple web API with Flask that may be used to access data from the AirPi and connected Netatmo air quality monitors on the local network**
 
 This example uses a Netatmo smart indoor air quality monitor placed in the bedroom, with an additional module located outside on the balcony. The AirPi is located in the home office. 
 
@@ -158,6 +158,32 @@ You may now make calls to the API using the specified routes. For example: `http
 A page containing an overview of home environmental data can be accesed with the following route: `http://YOUR_PI_IP:5000/`
 
 If you do not know the IP address of your Raspberry Pi for the above, run the following command in a terminal on the Raspberry Pi to find it: `ip a`
+
+**(iii) This section describes how to create a simple bash script that will use the API to check the CO2 level every 30 minutes and email a warning to the user if it climbs above 1000ppm.**
+
+Install the following at the command line:
+```
+sudo apt-get install jq
+sudo apt-get install -y swaks
+sudo apt-get -y install perl
+```
+The example script uses mailgun to send an email via SMTP. A mailgun account will be required for this. If you do not have one, proceed as below:
+
+- Go to https://www.mailgun.com/ and click "Start Sending"
+- Follow the instructions for setting up an account and verify your account.
+- Go to the Sandbox Domain in the Sending Domains section on the Dashboard.
+- Select the Sandbox and select the SMTP option. You should then see your SMTP settings. You will now use these in the script
+
+Once you have your mailgun credentials, enter your username and password at lines 13 and 14 of the script. Then enter the email that you wish the alerts to be sent to at line 15. 
+
+The script may then be set as a cronjob to run at regular intervals. For the script to run every 30 minutes type `sudo crontab -e` and, **adjusting the paths to match your directories**, add the below to it:
+```
+*/30 * * * * /home/pi/airPi/co2_alert.sh
+```
+
+The script will now run every 30 minutes and make a HTTP request to the API to check the co2 level. If the co2 level is above 1000ppm an email will be sent to alert the user so they can open the windows. 
+
+Note that this script requires the API to be running, so you my also wish to set the API to run at boot. 
 
 ## Project Graphics
 ![Project Graphics](/images/final_graphics.jpg)
