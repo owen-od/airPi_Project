@@ -189,7 +189,7 @@ Note that this script requires the API to be running, so you my also wish to set
 ![Project Graphics](/images/final_graphics.jpg)
 
 ## Project Video
-A video walk-through of the project is available on YouTube at the followling URL: https://youtu.be/1uGTmVYq9_U
+A video walk-through of the project is available on YouTube at the following URL: https://youtu.be/1uGTmVYq9_U
 
 ## Contact
 Contact me at 20095405@mail.wit.ie
